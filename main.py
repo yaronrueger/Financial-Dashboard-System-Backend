@@ -23,7 +23,7 @@ app = FastAPI(title="Quizapp API")
 ###########################################
 
 DB_URL = os.environ.get("DB_URL", "sqlite://./data/db.sqlite3")
-JWT_SECRET = os.environ.get("JWT_SECRET", "secretlolol")
+JWT_SECRET = os.environ.get("JWT_SECRET", "secret")
 oauth_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 register_tortoise (
@@ -109,7 +109,7 @@ async def getIncome(user: User_Pydantic = Depends(get_current_user)):
 
 @app.get("/api/income/searchpage")
 async def getIncomeSearch(user: User_Pydantic = Depends(get_current_user)):
-    return excelFile.get_artDerEinkünfteSuche()
+    return excelFile.getIncomeArraySearch()
 
 @app.get("/api/income/names")
 async def getIncomeNames(user: User_Pydantic = Depends(get_current_user)):
@@ -125,7 +125,7 @@ async def getExpenses(user: User_Pydantic = Depends(get_current_user)):
 
 @app.get("/api/expenses/searchpage")
 async def getExpenseSearch(user: User_Pydantic = Depends(get_current_user)):
-    return excelFile.get_ausgabenSuche()
+    return excelFile.getExpenseArraySearch()
 
 @app.get("/api/expenses/names")
 async def getExpensesNames(user: User_Pydantic = Depends(get_current_user)):
@@ -146,7 +146,7 @@ async def getStartpageInfos(user: User_Pydantic = Depends(get_current_user)):
     income = excelFile.getIncomeYear()
     expense = excelFile.getExpenseYear()
     incomeValues = excelFile.getIncomeYearLastThree()
-    expenseValues = excelFile.get_ausgabenJahrLastThree()
+    expenseValues = excelFile.getExpenseYearLastThree()
     incomePercent = excelFile.getIncomeYearPercent()
     expensePercent = excelFile.getExpenseYearPercent()
     return{

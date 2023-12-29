@@ -13,7 +13,7 @@ appSecret='YOUR_APPSECRET'
 refreshToken='YOUR_REFRESHTOKEN'
 dbx = dropbox.Dropbox( app_key = appkey, app_secret = appSecret, oauth2_refresh_token = refreshToken)
 # Download Excel file as bytes object
-file_path = '/mappe1.1.xlsx'
+file_path = '/YOUR_EXCELFILE.xlsx'
 file_metadata, file_content = dbx.files_download(file_path)
 file_bytes = file_content.content
 #arrays
@@ -324,7 +324,7 @@ def addOrRemoveTitle(title: str, type: str):
     updateStartpageFavorites()
 
 
-def get_incomeArraySuche():
+def getIncomeArraySearch():
     fusion_array = []
     favoritesArray_titles = {fav.title: fav for fav in favoritesArray}
     for income in getIncomeArray():
@@ -352,7 +352,7 @@ def get_incomeArraySuche():
             fusion_array.append(new_search_page)
     return fusion_array
 
-def get_expenseArraySuche():
+def getExpenseArraySearch():
     fusion_array = []
     favoritesArray_titles = {fav.title: fav for fav in favoritesArray}
     for expense in getExpenseArray():
